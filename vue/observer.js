@@ -1,8 +1,11 @@
+import { arrMethods } from './array';
 import defineReactiveData from './defineReactive';
 function Observer (data){
     console.log('******Observer data*********')
     if(Array.isArray(data) ){
-
+        // 如果是数组的话，就需要重写对应的改变原数组的方法
+        data.__proto__ = arrMethods;
+        observeArr(data)
     }else{
         this.walk(data)
     }
